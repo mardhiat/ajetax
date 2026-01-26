@@ -11,7 +11,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
   label,
   value,
   onChange,
-  placeholder = '0.00',
+  placeholder = '0',
 }) => {
   const formatNumber = (num: number): string => {
     if (num === 0) return '';
@@ -29,12 +29,12 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-2">
       <label className="text-sm font-medium text-gray-700">
         {label}
       </label>
       <div className="relative">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-medium pointer-events-none">
           ₦
         </span>
         <input
@@ -42,7 +42,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
           value={formatNumber(value)}
           onChange={handleChange}
           placeholder={placeholder}
-          className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+          className="w-full pl-200 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all text-gray-900 placeholder:text-gray-400"
         />
       </div>
     </div>
