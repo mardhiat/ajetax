@@ -80,23 +80,28 @@ export const TaxCalculator: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            AJETAX 2026 Personal Income Tax Calculator
-          </h1>
-          <p className="text-gray-600">
-            Nigerian Personal Income Tax Computation
-          </p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">AJETAX</h1>
+              <p className="text-sm text-gray-600 mt-1">Nigerian Personal Income Tax Calculator</p>
+            </div>
+            <div className="h-12 w-12 bg-green-600 rounded-lg flex items-center justify-center">
+              <span className="text-white text-2xl font-bold">₦</span>
+            </div>
+          </div>
         </div>
+      </header>
 
+      <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Income Section */}
           <div className="lg:col-span-2 space-y-6">
             {/* Employment Income */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-600">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 Employment Income
               </h2>
@@ -150,7 +155,7 @@ export const TaxCalculator: React.FC = () => {
             </div>
 
             {/* Investment Income */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-600">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 Investment Income
               </h2>
@@ -194,7 +199,7 @@ export const TaxCalculator: React.FC = () => {
             </div>
 
             {/* Capital Gains */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-600">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 Capital Gains
               </h2>
@@ -213,7 +218,7 @@ export const TaxCalculator: React.FC = () => {
             </div>
 
             {/* Deductions */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-600">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 Deductions & Reliefs
               </h2>
@@ -255,7 +260,7 @@ export const TaxCalculator: React.FC = () => {
             <div className="flex justify-end">
               <button
                 onClick={handleClearAll}
-                className="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                className="px-6 py-3 bg-white border-2 border-red-600 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition-colors font-medium"
               >
                 Clear All
               </button>
@@ -264,47 +269,47 @@ export const TaxCalculator: React.FC = () => {
 
           {/* Results Panel */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-md p-6 sticky top-8">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            <div className="bg-white rounded-lg shadow-lg border-2 border-green-600 p-6 sticky top-24">
+              <h2 className="text-xl font-semibold text-gray-900 mb-6 pb-3 border-b-2 border-green-600">
                 Tax Computation
               </h2>
 
               <div className="space-y-4">
-                <div className="border-b pb-3">
-                  <p className="text-sm text-gray-600">Total Income</p>
+                <div className="pb-3 border-b border-gray-200">
+                  <p className="text-sm text-gray-600 mb-1">Total Income</p>
                   <p className="text-lg font-semibold text-gray-900">
                     {formatCurrency(results.totalIncome)}
                   </p>
                 </div>
 
-                <div className="border-b pb-3">
-                  <p className="text-sm text-gray-600">Total Deductions</p>
+                <div className="pb-3 border-b border-gray-200">
+                  <p className="text-sm text-gray-600 mb-1">Total Deductions</p>
                   <p className="text-lg font-semibold text-gray-900">
                     {formatCurrency(results.totalDeductions)}
                   </p>
                 </div>
 
-                <div className="border-b pb-3">
-                  <p className="text-sm text-gray-600">Taxable Income</p>
+                <div className="pb-3 border-b border-gray-200">
+                  <p className="text-sm text-gray-600 mb-1">Taxable Income</p>
                   <p className="text-lg font-semibold text-gray-900">
                     {formatCurrency(results.taxableIncome)}
                   </p>
                 </div>
 
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <p className="text-sm text-blue-900 font-medium mb-1">
+                <div className="bg-green-50 border-2 border-green-600 p-4 rounded-lg">
+                  <p className="text-sm text-green-900 font-medium mb-2">
                     Annual Tax Due
                   </p>
-                  <p className="text-2xl font-bold text-blue-900">
+                  <p className="text-3xl font-bold text-green-700">
                     {formatCurrency(results.annualTax)}
                   </p>
                 </div>
 
-                <div className="bg-green-50 p-4 rounded-lg">
-                  <p className="text-sm text-green-900 font-medium mb-1">
+                <div className="bg-green-600 p-4 rounded-lg">
+                  <p className="text-sm text-white font-medium mb-2">
                     Monthly Tax
                   </p>
-                  <p className="text-2xl font-bold text-green-900">
+                  <p className="text-3xl font-bold text-white">
                     {formatCurrency(results.monthlyTax)}
                   </p>
                 </div>
