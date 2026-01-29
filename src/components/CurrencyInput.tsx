@@ -30,17 +30,19 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
 
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+      <label className="text-sm font-medium text-gray-700">
         {label}
-        <span className="text-green-600 font-semibold">(₦)</span>
       </label>
-      <input
-        type="text"
-        value={formatNumber(value)}
-        onChange={handleChange}
-        placeholder={placeholder}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-green-600 outline-none transition-all text-gray-900 placeholder:text-gray-400"
-      />
+      <div className="relative">
+        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">₦</span>
+        <input
+          type="text"
+          value={formatNumber(value)}
+          onChange={handleChange}
+          placeholder={placeholder}
+          className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all text-gray-900 placeholder:text-gray-300 font-medium shadow-sm"
+        />
+      </div>
     </div>
   );
 };
