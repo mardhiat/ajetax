@@ -185,7 +185,7 @@ const App: React.FC = () => {
           <p className="text-xs text-gray-400 mt-1">Concept by Maruf A. Ajetunmobi, Msc, AMNIM, FCTI</p>
           <p className="text-xs text-gray-400 mt-2 text-center max-w-md">Disclaimer: This tool provides estimations based on provided logic for the 2026 tax year. For official filings, consult a certified tax professional or the Nigerian Revenue Service (NRS).</p>
           <div className="mt-8 pt-8 border-t border-gray-50 w-full flex justify-center space-x-6 text-xs text-gray-400">
-            <span>&copy; 2025 AJETAX Systems</span>
+            <span>&copy; 2026 AJETAX</span>
             <span>Version 1.0.4-stable</span>
             <span>Tax Protocol: NG-PIT-2026</span>
           </div>

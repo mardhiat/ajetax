@@ -39,4 +39,4 @@ This is for informational purposes only. For official tax filings, consult NRS o
 **Developed by Mardhiat Ajetunmobi**  
 Concept by Maruf A. Ajetunmobi, Msc, AMNIM, FCTI
 
-v1.0.4 | © 2025 AJETAX Systems
+v1.0.4 | © 2026 AJETAX 
