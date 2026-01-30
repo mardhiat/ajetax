@@ -32,7 +32,7 @@ React + TypeScript + Vite + Tailwind CSS
 
 ## Note
 
-This is for informational purposes only. For official tax filings, consult FIRS or a certified tax professional.
+This is for informational purposes only. For official tax filings, consult NRS or a certified tax professional.
 
 ---
 
