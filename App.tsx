@@ -182,6 +182,7 @@ const App: React.FC = () => {
             <div className="bg-emerald-700 h-full flex-1 rounded-r-sm"></div>
           </div>
           <p className="text-sm text-gray-500 font-medium">Developed by Mardhiat Ajetunmobi</p>
+          <p className="text-xs text-gray-400 mt-1">Developed by Mardhiat A. Ajetunmobi</p>
           <p className="text-xs text-gray-400 mt-1">Concept by Maruf A. Ajetunmobi, Msc, AMNIM, FCTI</p>
           <p className="text-xs text-gray-400 mt-2 text-center max-w-md">Disclaimer: This tool provides estimations based on provided logic for the 2026 tax year. For official filings, consult a certified tax professional or the Federal Inland Revenue Service (FIRS).</p>
           <div className="mt-8 pt-8 border-t border-gray-50 w-full flex justify-center space-x-6 text-xs text-gray-400">
