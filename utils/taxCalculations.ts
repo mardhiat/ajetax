@@ -1,5 +1,5 @@
 
-import { TaxFormData, TaxResults, BracketBreakdown } from '../types';
+import type { TaxFormData, TaxResults, BracketBreakdown } from '../types';
 
 export const formatNaira = (amount: number): string => {
   return new Intl.NumberFormat('en-NG', {

@@ -1,6 +1,6 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
-import { TaxFormData, TaxResults } from './types';
+import type { TaxFormData, TaxResults } from './types';
 import { calculateTax } from './utils/taxCalculations';
 import CurrencyInput from './components/CurrencyInput';
 import ResultsSection from './components/ResultsSection';
