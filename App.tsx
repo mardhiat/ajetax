@@ -180,7 +180,7 @@ const App: React.FC = () => {
             <div className="bg-white h-full flex-1 border-t border-b border-gray-100"></div>
             <div className="bg-emerald-700 h-full flex-1 rounded-r-sm"></div>
           </div>
-          <p className="text-sm text-gray-500 font-medium">By Maruf A. Ajetunmobi, Msc, AMNIM, FCTI</p>
+          <p className="text-sm text-gray-500 font-medium">Produced by Maruf A. Ajetunmobi, Msc, AMNIM, FCTI</p>
           <div className="mt-2 flex flex-col items-center space-y-1">
             <p className="text-xs text-gray-400">
               <a href="mailto:marmutmufmur@gmail.com" className="hover:text-emerald-600 transition-colors">Email: marmutmufmur@gmail.com</a>
