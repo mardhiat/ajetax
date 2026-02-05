@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useEffect } from 'react';
 import type { TaxFormData, TaxResults } from './types';
 import { calculateTax } from './utils/taxCalculations';
@@ -49,7 +48,7 @@ const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<'income' | 'deductions' | 'prepaid'>('income');
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-20" style={{ fontFamily: 'Arial, sans-serif' }}>
       {/* Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -75,11 +74,11 @@ const App: React.FC = () => {
       </header>
 
       <main className="max-w-7xl mx-auto px-6 pt-12">
-        <div className="grid grid-cols-1 xl:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
           {/* Inputs Panel */}
-          <div className="xl:col-span-7 space-y-12">
+          <div className="xl:col-span-6 space-y-10">
             <section>
-              <div className="flex items-center justify-between mb-8 border-b border-gray-100 pb-4">
+              <div className="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
                 <h2 className="text-2xl font-bold text-gray-800">Income Declaration</h2>
                 <div className="flex space-x-2">
                     <button onClick={() => setFormData(INITIAL_FORM_DATA)} className="text-xs font-semibold text-emerald-600 hover:text-emerald-700 px-3 py-1 rounded-full border border-emerald-100 hover:bg-emerald-50 transition-all">
@@ -89,9 +88,9 @@ const App: React.FC = () => {
               </div>
 
               {/* Employment Income Sub-Section */}
-              <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm space-y-8 mb-8">
-                <h3 className="text-lg font-bold text-gray-700 border-l-4 border-emerald-600 pl-3">Employment Income</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-6 mb-6">
+                <h3 className="text-base font-bold text-gray-700 border-l-4 border-emerald-600 pl-3">Employment Income</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
                   <CurrencyInput label="Annual Basic Salary" name="basicSalary" value={formData.basicSalary} onChange={(v) => updateField('basicSalary', v)} />
                   <CurrencyInput label="Employment Allowances" name="employmentAllowances" value={formData.employmentAllowances} onChange={(v) => updateField('employmentAllowances', v)} helperText="Housing, Transport, etc." />
                   <CurrencyInput label="Other Allowances" name="otherEmploymentAllowances" value={formData.otherEmploymentAllowances} onChange={(v) => updateField('otherEmploymentAllowances', v)} />
@@ -105,16 +104,16 @@ const App: React.FC = () => {
               </div>
 
               {/* Investment & Capital Gains Sub-Section */}
-              <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm space-y-8">
-                <h3 className="text-lg font-bold text-gray-700 border-l-4 border-emerald-600 pl-3">Investment & Gains</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-6">
+                <h3 className="text-base font-bold text-gray-700 border-l-4 border-emerald-600 pl-3">Investment & Gains</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
                   <CurrencyInput label="Net Trading Income" name="netTradingIncome" value={formData.netTradingIncome} onChange={(v) => updateField('netTradingIncome', v)} />
                   <CurrencyInput label="Gross Rental Income" name="grossRentalIncome" value={formData.grossRentalIncome} onChange={(v) => updateField('grossRentalIncome', v)} />
                   <CurrencyInput label="Gross Dividend" name="grossDividendReceived" value={formData.grossDividendReceived} onChange={(v) => updateField('grossDividendReceived', v)} />
                   <CurrencyInput label="Gross Interest" name="grossInterestReceived" value={formData.grossInterestReceived} onChange={(v) => updateField('grossInterestReceived', v)} />
                   <CurrencyInput label="Digital Earnings (Crypto/NFT)" name="virtualDigitalEarnings" value={formData.virtualDigitalEarnings} onChange={(v) => updateField('virtualDigitalEarnings', v)} />
                   <CurrencyInput label="Gross Foreign Income" name="grossForeignIncome" value={formData.grossForeignIncome} onChange={(v) => updateField('grossForeignIncome', v)} />
-                  <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 pt-4 border-t border-gray-100">
+                  <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5 pt-4 border-t border-gray-100">
                     <CurrencyInput label="Cost of Shares Disposed" name="initialCostOfShares" value={formData.initialCostOfShares} onChange={(v) => updateField('initialCostOfShares', v)} />
                     <CurrencyInput label="Proceeds from Shares" name="sharesDisposedProceeds" value={formData.sharesDisposedProceeds} onChange={(v) => updateField('sharesDisposedProceeds', v)} />
                   </div>
@@ -123,9 +122,9 @@ const App: React.FC = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-800 mb-8 border-b border-gray-100 pb-4">Allowable Deductions</h2>
-              <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+              <h2 className="text-2xl font-bold text-gray-800 mb-6 border-b border-gray-100 pb-4">Allowable Deductions</h2>
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
                   <CurrencyInput label="Rent Paid" name="rentPaid" value={formData.rentPaid} onChange={(v) => updateField('rentPaid', v)} helperText="Max deduction: ₦500k or 20% of rent" />
                   <CurrencyInput label="Pension Contribution" name="pensionPaid" value={formData.pensionPaid} onChange={(v) => updateField('pensionPaid', v)} helperText="Max: 8% of Basic + Allowances" />
                   <CurrencyInput label="NHF Paid" name="nhfPaid" value={formData.nhfPaid} onChange={(v) => updateField('nhfPaid', v)} helperText="Max: 2.5% of Basic Salary" />
@@ -137,9 +136,9 @@ const App: React.FC = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-800 mb-8 border-b border-gray-100 pb-4">Prepaid Taxes</h2>
-              <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+              <h2 className="text-2xl font-bold text-gray-800 mb-6 border-b border-gray-100 pb-4">Prepaid Taxes</h2>
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
                   <CurrencyInput label="PAYE Withheld" name="payeWithheld" value={formData.payeWithheld} onChange={(v) => updateField('payeWithheld', v)} />
                   <CurrencyInput label="WHT on Dividend" name="whtDividend" value={formData.whtDividend} onChange={(v) => updateField('whtDividend', v)} />
                   <CurrencyInput label="WHT on Interest" name="whtInterest" value={formData.whtInterest} onChange={(v) => updateField('whtInterest', v)} />
@@ -152,7 +151,7 @@ const App: React.FC = () => {
           </div>
 
           {/* Results Side Panel */}
-          <div className="xl:col-span-5 relative">
+          <div className="xl:col-span-6 relative">
             <div className="sticky top-28">
               <div className="mb-6 flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-800">Calculation Results</h2>
