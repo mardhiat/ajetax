@@ -181,8 +181,16 @@ const App: React.FC = () => {
             <div className="bg-emerald-700 h-full flex-1 rounded-r-sm"></div>
           </div>
           <p className="text-sm text-gray-500 font-medium">Concept by Maruf A. Ajetunmobi, Msc, AMNIM, FCTI</p>
+          <div className="mt-2 flex flex-col items-center space-y-1">
+            <p className="text-xs text-gray-400">
+              <a href="mailto:marmutmufmur@gmail.com" className="hover:text-emerald-600 transition-colors">Email: marmutmufmur@gmail.com</a>
+            </p>
+            <p className="text-xs text-gray-400">
+              Tel: <a href="tel:+18623715007" className="hover:text-emerald-600 transition-colors">+1 (862) 371-5007</a> | <a href="tel:+18623072294" className="hover:text-emerald-600 transition-colors">+1 (862) 307-2294</a>
+            </p>
+          </div>
           {/* <p className="text-xs text-gray-400 mt-1">Developed by Mardhiat Ajetunmobi</p> */}
-          <p className="text-xs text-gray-400 mt-2 text-center max-w-md">Disclaimer: This tool provides estimations based on provided logic for the 2026 tax year. For official filings, consult a certified tax professional or the Nigerian Revenue Service (NRS).</p>
+          <p className="text-xs text-gray-400 mt-3 text-center max-w-md">Disclaimer: This tool provides estimations based on provided logic for the 2026 tax year. For official filings, consult a certified tax professional or the Nigerian Revenue Service (NRS).</p>
           <div className="mt-8 pt-8 border-t border-gray-50 w-full flex justify-center space-x-6 text-xs text-gray-400">
             <span>&copy; 2026 AJETAX</span>
             <span>Version 1.0.4-stable</span>
