@@ -1,10 +1,10 @@
-
 export interface TaxFormData {
   // Employment Income
   basicSalary: number;
   employmentAllowances: number;
   otherEmploymentAllowances: number;
   benefitsInKind: number;
+  annualPensionGratuity: number;
   gratuityReceived: number;
   lossOfJobCompensation: number;
   salaryArrears: number;

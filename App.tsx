@@ -9,6 +9,7 @@ const INITIAL_FORM_DATA: TaxFormData = {
   employmentAllowances: 0,
   otherEmploymentAllowances: 0,
   benefitsInKind: 0,
+  annualPensionGratuity: 0,
   gratuityReceived: 0,
   lossOfJobCompensation: 0,
   salaryArrears: 0,
@@ -95,6 +96,7 @@ const App: React.FC = () => {
                   <CurrencyInput label="Employment Allowances" name="employmentAllowances" value={formData.employmentAllowances} onChange={(v) => updateField('employmentAllowances', v)} helperText="Housing, Transport, etc." />
                   <CurrencyInput label="Other Allowances" name="otherEmploymentAllowances" value={formData.otherEmploymentAllowances} onChange={(v) => updateField('otherEmploymentAllowances', v)} />
                   <CurrencyInput label="Benefits in Kind" name="benefitsInKind" value={formData.benefitsInKind} onChange={(v) => updateField('benefitsInKind', v)} />
+                  <CurrencyInput label="Annual Pension Income / Gratuity" name="annualPensionGratuity" value={formData.annualPensionGratuity} onChange={(v) => updateField('annualPensionGratuity', v)} />
                   <CurrencyInput label="Gratuity Received" name="gratuityReceived" value={formData.gratuityReceived} onChange={(v) => updateField('gratuityReceived', v)} />
                   <CurrencyInput label="Job Compensation" name="lossOfJobCompensation" value={formData.lossOfJobCompensation} onChange={(v) => updateField('lossOfJobCompensation', v)} />
                   <CurrencyInput label="Salary Arrears" name="salaryArrears" value={formData.salaryArrears} onChange={(v) => updateField('salaryArrears', v)} />
@@ -180,13 +182,13 @@ const App: React.FC = () => {
             <div className="bg-white h-full flex-1 border-t border-b border-gray-100"></div>
             <div className="bg-emerald-700 h-full flex-1 rounded-r-sm"></div>
           </div>
-          <p className="text-sm text-gray-500 font-medium">Produced by Maruf A. Ajetunmobi, Msc, AMNIM, FCTI</p>
+          <p className="text-sm text-gray-500 font-medium">Concept by Maruf A. Ajetunmobi, Msc, AMNIM, FCTI</p>
           <div className="mt-2 flex flex-col items-center space-y-1">
             <p className="text-xs text-gray-400">
-              <a href="mailto:marmutmufmur@gmail.com" className="hover:text-emerald-600 transition-colors">Email: marmutmufmur@gmail.com</a>
+              <a href="mailto:marmutmufmur@gmail.com" className="hover:text-emerald-600 transition-colors">marmutmufmur@gmail.com</a>
             </p>
             <p className="text-xs text-gray-400">
-              Tel: <a href="tel:+18623715007" className="hover:text-emerald-600 transition-colors">+1 (862) 371-5007</a> | <a href="tel:+18623072294" className="hover:text-emerald-600 transition-colors">+1 (862) 307-2294</a>
+              Tel: <a href="tel:+18623715007" className="hover:text-emerald-600 transition-colors">8623715007</a> | <a href="tel:+18623072294" className="hover:text-emerald-600 transition-colors">8623072294</a>
             </p>
           </div>
           {/* <p className="text-xs text-gray-400 mt-1">Developed by Mardhiat Ajetunmobi</p> */}

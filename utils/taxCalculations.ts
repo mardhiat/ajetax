@@ -1,4 +1,3 @@
-
 import type { TaxFormData, TaxResults, BracketBreakdown } from '../types';
 
 export const formatNaira = (amount: number): string => {
@@ -20,6 +19,7 @@ export const calculateTax = (data: TaxFormData): TaxResults => {
     data.employmentAllowances + 
     data.otherEmploymentAllowances + 
     data.benefitsInKind + 
+    data.annualPensionGratuity +
     data.gratuityReceived + 
     data.lossOfJobCompensation + 
     data.salaryArrears + 
