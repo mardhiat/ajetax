@@ -95,7 +95,7 @@ const App: React.FC = () => {
                   <CurrencyInput label="Employment Allowances" name="employmentAllowances" value={formData.employmentAllowances} onChange={(v) => updateField('employmentAllowances', v)} helperText="Housing, Transport, etc." />
                   <CurrencyInput label="Other Allowances" name="otherEmploymentAllowances" value={formData.otherEmploymentAllowances} onChange={(v) => updateField('otherEmploymentAllowances', v)} />
                   <CurrencyInput label="Benefits in Kind" name="benefitsInKind" value={formData.benefitsInKind} onChange={(v) => updateField('benefitsInKind', v)} />
-                  <CurrencyInput label="Gratuity Received" name="gratuityReceived" value={formData.gratuityReceived} onChange={(v) => updateField('gratuityReceived', v)} />
+                  <CurrencyInput label="Annual Pension Income / Gratuity" name="gratuityReceived" value={formData.gratuityReceived} onChange={(v) => updateField('gratuityReceived', v)} />
                   <CurrencyInput label="Job Compensation" name="lossOfJobCompensation" value={formData.lossOfJobCompensation} onChange={(v) => updateField('lossOfJobCompensation', v)} />
                   <CurrencyInput label="Salary Arrears" name="salaryArrears" value={formData.salaryArrears} onChange={(v) => updateField('salaryArrears', v)} />
                   <CurrencyInput label="Bonus / Commission" name="bonusCommission" value={formData.bonusCommission} onChange={(v) => updateField('bonusCommission', v)} />
