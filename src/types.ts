@@ -1,4 +1,3 @@
-
 export interface TaxFormData {
   // Employment Income
   basicSalary: number;
