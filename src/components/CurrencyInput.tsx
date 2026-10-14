@@ -6,7 +6,6 @@ interface CurrencyInputProps {
   value: number;
   onChange: (value: number) => void;
   helperText?: string;
-  placeholder?: string;
 }
 
 const CurrencyInput: React.FC<CurrencyInputProps> = ({
@@ -15,7 +14,6 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
   value,
   onChange,
   helperText,
-  placeholder = '0.00',
 }) => {
   const generatedId = useId();
   const inputId = `${name}-${generatedId}`;
@@ -31,13 +29,13 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
   };
 
   return (
-    <div className="flex w-full flex-col space-y-1.5">
-      <label htmlFor={inputId} className="text-sm font-medium text-gray-700">
+    <div>
+      <label htmlFor={inputId} className="mb-1 block text-sm">
         {label}
       </label>
       <div className="relative">
         <span
-          className="absolute left-3 top-1/2 -translate-y-1/2 font-medium text-gray-400"
+          className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-600"
           aria-hidden="true"
         >
           ₦
@@ -51,14 +49,14 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
           min="0"
           value={value === 0 ? '' : value}
           onChange={handleChange}
-          placeholder={placeholder}
+          placeholder="0"
           autoComplete="off"
           aria-describedby={helperId}
-          className="mono w-full rounded-lg border border-gray-300 bg-white py-2.5 pl-8 pr-4 text-gray-800 transition-all duration-200 focus:border-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+          className="num w-full rounded border border-gray-400 bg-white py-2.5 pl-8 pr-3 text-base focus:border-green-800 focus:outline-none"
         />
       </div>
       {helperText && (
-        <p id={helperId} className="text-xs italic text-gray-500">
+        <p id={helperId} className="mt-1 text-sm text-gray-600">
           {helperText}
         </p>
       )}

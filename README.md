@@ -8,7 +8,7 @@ Live app: https://ajetax.vercel.app
 
 The calculator covers employment income, investments, capital gains, statutory deductions (pension, NHF, rent relief), and prepaid taxes (PAYE, WHT). Results update as you type.
 
-Tax logic lives in `src/utils/taxCalculations.ts`, including the 2026 progressive brackets and deduction caps. Use **Load example** on the income form to fill a sample case.
+Tax logic lives in `src/utils/taxCalculations.ts`, including the 2026 progressive brackets and deduction caps. Use **Fill with a sample** to try a worked example.
 
 ## Getting started
 
@@ -40,8 +40,7 @@ src/
   types.ts                   Form and result types
   components/
     CurrencyInput.tsx        Naira input field
-    ResultsSection.tsx       Summary cards and bracket table
-    Logo.tsx                 Mark used in the header and footer
+    ResultsSection.tsx       The amount left to pay, and the band table
   utils/
     taxCalculations.ts       Tax computation logic
 ```

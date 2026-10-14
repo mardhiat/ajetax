@@ -8,148 +8,91 @@ interface ResultsSectionProps {
 
 const ResultsSection: React.FC<ResultsSectionProps> = ({ results }) => {
   const isCredit = results.taxLiability < 0;
-  const monthlyIsCredit = results.monthlyTax < 0;
+  const headline = isCredit
+    ? 'Tax overpaid'
+    : results.taxLiability === 0
+      ? 'No tax left to pay'
+      : 'Tax left to pay';
 
-  const getAmountFontSize = (value: number) => {
-    const formatted = formatNaira(value);
-    if (formatted.length > 18) return 'text-base';
-    if (formatted.length > 15) return 'text-lg';
-    return 'text-xl';
-  };
+  const rows = [
+    ['Total income', results.grossWorldwideIncome],
+    ['Deductions allowed', results.totalDeductions],
+    ['Taxable income', results.taxableIncome],
+    ['Tax for the year', results.taxDue],
+    ['Tax already paid', results.totalPrepaidTaxes],
+  ] as const;
 
   return (
-    <div className="space-y-8">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-gray-500">
-            Gross Worldwide Income
-          </p>
-          <p
-            className={`${getAmountFontSize(results.grossWorldwideIncome)} whitespace-nowrap font-bold text-gray-800`}
+    <div className="border border-gray-300 bg-white p-4">
+      <p className="text-sm text-gray-700">{headline}</p>
+      <p className="num mt-1 text-3xl font-semibold text-green-900">
+        {formatNaira(Math.abs(results.taxLiability))}
+      </p>
+      <p className="num mt-1 text-sm text-gray-700">
+        {results.monthlyTax < 0
+          ? `${formatNaira(Math.abs(results.monthlyTax))} a month overpaid`
+          : `${formatNaira(results.monthlyTax)} a month`}
+      </p>
+
+      <dl className="mt-4 border-t border-gray-200">
+        {rows.map(([label, amount]) => (
+          <div
+            key={label}
+            className="flex items-baseline justify-between gap-4 border-b border-gray-200 py-2 text-sm"
           >
-            {formatNaira(results.grossWorldwideIncome)}
-          </p>
-        </div>
+            <dt>{label}</dt>
+            <dd className="num whitespace-nowrap">{formatNaira(amount)}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  );
+};
 
-        <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-gray-500">
-            Total Deductions
-          </p>
-          <p
-            className={`${getAmountFontSize(results.totalDeductions)} whitespace-nowrap font-bold text-emerald-700`}
-          >
-            {formatNaira(results.totalDeductions)}
-          </p>
-        </div>
-
-        <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-gray-500">
-            Taxable Income
-          </p>
-          <p
-            className={`${getAmountFontSize(results.taxableIncome)} whitespace-nowrap font-bold text-gray-800`}
-          >
-            {formatNaira(results.taxableIncome)}
-          </p>
-        </div>
-
-        <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-gray-500">Tax Due</p>
-          <p
-            className={`${getAmountFontSize(results.taxDue)} whitespace-nowrap font-bold text-gray-800`}
-          >
-            {formatNaira(results.taxDue)}
-          </p>
-        </div>
-
-        <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-gray-500">
-            Prepaid Taxes
-          </p>
-          <p
-            className={`${getAmountFontSize(results.totalPrepaidTaxes)} whitespace-nowrap font-bold text-emerald-600`}
-          >
-            {formatNaira(results.totalPrepaidTaxes)}
-          </p>
-        </div>
-
-        <div
-          className={`rounded-xl border p-5 shadow-sm transition-shadow hover:shadow-md ${isCredit ? 'border-emerald-200 bg-emerald-50' : 'border-gray-200 bg-white'}`}
-        >
-          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-gray-500">
-            {isCredit ? 'Tax Credit (Refundable)' : 'Tax Liability (Payable)'}
-          </p>
-          <p
-            className={`${getAmountFontSize(Math.abs(results.taxLiability))} whitespace-nowrap font-bold ${isCredit ? 'text-emerald-700' : 'text-red-600'}`}
-          >
-            {formatNaira(Math.abs(results.taxLiability))}
-          </p>
-        </div>
-      </div>
-
-      <div className="flex flex-col items-center justify-center rounded-xl bg-emerald-700 p-8 text-center text-white shadow-lg">
-        <p className="mb-2 text-xs font-medium uppercase tracking-widest text-emerald-100">
-          {monthlyIsCredit ? 'Estimated Monthly Credit' : 'Estimated Monthly Tax Payment'}
-        </p>
-        <p className="mb-2 whitespace-nowrap text-4xl font-bold tracking-tight">
-          {formatNaira(Math.abs(results.monthlyTax))}
-        </p>
-        <p className="text-xs text-emerald-200 opacity-80">
-          {monthlyIsCredit
-            ? 'Based on the annual credit divided by 12 months'
-            : 'Based on the annual liability divided by 12 months'}
-        </p>
-      </div>
-
-      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-        <div className="border-b border-gray-200 bg-gray-50 px-6 py-4">
-          <h3 className="text-lg font-bold text-gray-800">Tax Bracket Breakdown</h3>
-        </div>
+export function BracketTable({ results }: ResultsSectionProps) {
+  return (
+    <section className="mt-8 border border-gray-300 bg-white p-4">
+      <h2 className="mb-2 text-base font-semibold">How the tax was split</h2>
+      {results.brackets.length === 0 ? (
+        <p className="text-sm text-gray-600">Enter your income and the bands will show here.</p>
+      ) : (
         <div className="overflow-x-auto">
-          <table className="w-full text-left">
-            <thead className="bg-gray-50 text-xs font-semibold uppercase text-gray-500">
-              <tr>
-                <th className="px-6 py-3">Tax Bracket</th>
-                <th className="px-6 py-3 text-right">Income in Bracket</th>
-                <th className="px-6 py-3 text-right">Rate</th>
-                <th className="px-6 py-3 text-right">Tax Amount</th>
+          <table className="w-full min-w-[36rem] text-left text-sm">
+            <thead>
+              <tr className="border-b border-gray-300 text-gray-700">
+                <th className="py-2 pr-3 font-medium">Band</th>
+                <th className="py-2 pr-3 text-right font-medium">Income in this band</th>
+                <th className="py-2 pr-3 text-right font-medium">Rate</th>
+                <th className="py-2 text-right font-medium">Tax</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
-              {results.brackets.length === 0 ? (
-                <tr>
-                  <td colSpan={4} className="px-6 py-8 text-center text-sm text-gray-500">
-                    Enter income to see how it falls across the 2026 brackets.
+            <tbody>
+              {results.brackets.map((bracket) => (
+                <tr key={bracket.label} className="border-b border-gray-200">
+                  <td className="py-2 pr-3">{bracket.label}</td>
+                  <td className="num whitespace-nowrap py-2 pr-3 text-right">
+                    {formatNaira(bracket.amount)}
+                  </td>
+                  <td className="num py-2 pr-3 text-right">{(bracket.rate * 100).toFixed(0)}%</td>
+                  <td className="num whitespace-nowrap py-2 text-right">
+                    {formatNaira(bracket.tax)}
                   </td>
                 </tr>
-              ) : (
-                results.brackets.map((bracket) => (
-                  <tr key={bracket.label} className="transition-colors hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm font-medium text-gray-700">{bracket.label}</td>
-                    <td className="px-6 py-4 text-right text-sm">{formatNaira(bracket.amount)}</td>
-                    <td className="px-6 py-4 text-right text-sm">
-                      {(bracket.rate * 100).toFixed(0)}%
-                    </td>
-                    <td className="px-6 py-4 text-right text-sm font-semibold text-gray-800">
-                      {formatNaira(bracket.tax)}
-                    </td>
-                  </tr>
-                ))
-              )}
-              <tr className="bg-gray-50">
-                <td colSpan={3} className="px-6 py-4 font-bold text-gray-800">
-                  Total Tax Due
+              ))}
+              <tr>
+                <td className="py-2 pr-3 font-semibold" colSpan={3}>
+                  Tax for the year
                 </td>
-                <td className="px-6 py-4 text-right font-bold text-gray-900">
+                <td className="num whitespace-nowrap py-2 text-right font-semibold">
                   {formatNaira(results.taxDue)}
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-      </div>
-    </div>
+      )}
+    </section>
   );
-};
+}
 
 export default ResultsSection;
