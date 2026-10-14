@@ -2,15 +2,251 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ink: #1a1408;
+  --paper: #fff6e8;
+  --card: #fffdf8;
+  --green: #0b5c38;
+  --green-deep: #083d26;
+  --gold: #f0c84b;
+  --gold-ink: #1a1408;
+  --line: #d9c7a3;
+  --muted: #4a3f32;
+  --focus: #083d26;
+}
+
 body {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background-color: #f6f6f4;
-  color: #1c1c1c;
-  line-height: 1.45;
+  background-color: var(--paper);
+  color: var(--ink);
+  line-height: 1.5;
 }
 
 .num {
   font-variant-numeric: tabular-nums;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 50;
+  background: var(--gold);
+  color: var(--gold-ink);
+  padding: 0.6rem 0.9rem;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+.flag-bar {
+  display: flex;
+  height: 0.55rem;
+}
+
+.flag-bar span {
+  flex: 1;
+}
+
+.flag-bar span:nth-child(odd) {
+  background: var(--green);
+}
+
+.flag-bar span:nth-child(even) {
+  background: #fff;
+}
+
+.btn {
+  min-height: 2.75rem;
+  padding: 0.55rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border: 2px solid transparent;
+}
+
+.btn:focus-visible,
+.money-field:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green-deep);
+}
+
+.btn-primary:hover {
+  background: var(--green-deep);
+}
+
+.btn-quiet {
+  background: #fff;
+  color: var(--ink);
+  border-color: var(--green);
+}
+
+.section-card {
+  margin-bottom: 1.5rem;
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 0.6rem;
+  overflow: hidden;
+}
+
+.section-card h2 {
+  margin: 0;
+  padding: 0.7rem 1rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.section-card .fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .section-card .fields {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.tone-work h2 {
+  background: #0b5c38;
+}
+
+.tone-income h2 {
+  background: #0c5c78;
+}
+
+.tone-deduct h2 {
+  background: #8a4b12;
+}
+
+.tone-paid h2 {
+  background: #5c2d82;
+}
+
+.money-field {
+  width: 100%;
+  min-height: 2.75rem;
+  border: 2px solid #8d7b5d;
+  border-radius: 0.4rem;
+  background: #fff;
+  padding: 0.55rem 0.75rem 0.55rem 2rem;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.money-field:focus {
+  border-color: var(--green);
+  outline: none;
+}
+
+.help {
+  margin-top: 0.3rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.result-card {
+  background: var(--green-deep);
+  color: #fff;
+  border-radius: 0.7rem;
+  padding: 1.1rem 1rem 0.4rem;
+}
+
+.result-kicker {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.result-amount {
+  margin-top: 0.15rem;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.result-month {
+  display: inline-block;
+  margin-top: 0.55rem;
+  background: var(--gold);
+  color: var(--gold-ink);
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+}
+
+.result-card dl {
+  margin-top: 0.9rem;
+}
+
+.result-card dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  font-size: 0.95rem;
+}
+
+.band-table {
+  margin-top: 1.5rem;
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 0.6rem;
+  overflow: hidden;
+}
+
+.band-table h2 {
+  background: #0b5c38;
+  color: #fff;
+  margin: 0;
+  padding: 0.7rem 1rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.band-table .band-body {
+  padding: 0.5rem 1rem 1rem;
+}
+
+.band-table table {
+  width: 100%;
+  min-width: 36rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.band-table th {
+  text-align: left;
+  padding: 0.55rem 0.6rem 0.55rem 0;
+  border-bottom: 2px solid var(--green);
+}
+
+.band-table th:not(:first-child),
+.band-table td:not(:first-child) {
+  text-align: right;
+}
+
+.band-table td {
+  padding: 0.55rem 0.6rem 0.55rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.mobile-bar {
+  background: var(--green-deep);
+  color: #fff;
 }
 
 input::-webkit-outer-spin-button,

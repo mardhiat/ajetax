@@ -23,23 +23,18 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ results }) => {
   ] as const;
 
   return (
-    <div className="border border-gray-300 bg-white p-4">
-      <p className="text-sm text-gray-700">{headline}</p>
-      <p className="num mt-1 text-3xl font-semibold text-green-900">
-        {formatNaira(Math.abs(results.taxLiability))}
-      </p>
-      <p className="num mt-1 text-sm text-gray-700">
+    <div className="result-card" aria-live="polite">
+      <p className="result-kicker">{headline}</p>
+      <p className="result-amount num">{formatNaira(Math.abs(results.taxLiability))}</p>
+      <p className="result-month num">
         {results.monthlyTax < 0
           ? `${formatNaira(Math.abs(results.monthlyTax))} a month overpaid`
           : `${formatNaira(results.monthlyTax)} a month`}
       </p>
 
-      <dl className="mt-4 border-t border-gray-200">
+      <dl>
         {rows.map(([label, amount]) => (
-          <div
-            key={label}
-            className="flex items-baseline justify-between gap-4 border-b border-gray-200 py-2 text-sm"
-          >
+          <div key={label}>
             <dt>{label}</dt>
             <dd className="num whitespace-nowrap">{formatNaira(amount)}</dd>
           </div>
@@ -51,46 +46,44 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ results }) => {
 
 export function BracketTable({ results }: ResultsSectionProps) {
   return (
-    <section className="mt-8 border border-gray-300 bg-white p-4">
-      <h2 className="mb-2 text-base font-semibold">How the tax was split</h2>
-      {results.brackets.length === 0 ? (
-        <p className="text-sm text-gray-600">Enter your income and the bands will show here.</p>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[36rem] text-left text-sm">
-            <thead>
-              <tr className="border-b border-gray-300 text-gray-700">
-                <th className="py-2 pr-3 font-medium">Band</th>
-                <th className="py-2 pr-3 text-right font-medium">Income in this band</th>
-                <th className="py-2 pr-3 text-right font-medium">Rate</th>
-                <th className="py-2 text-right font-medium">Tax</th>
-              </tr>
-            </thead>
-            <tbody>
-              {results.brackets.map((bracket) => (
-                <tr key={bracket.label} className="border-b border-gray-200">
-                  <td className="py-2 pr-3">{bracket.label}</td>
-                  <td className="num whitespace-nowrap py-2 pr-3 text-right">
-                    {formatNaira(bracket.amount)}
+    <section className="band-table" aria-labelledby="band-heading">
+      <h2 id="band-heading">How the tax was split</h2>
+      <div className="band-body">
+        {results.brackets.length === 0 ? (
+          <p>Enter your income and the bands will show here.</p>
+        ) : (
+          <div className="overflow-x-auto">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Band</th>
+                  <th scope="col">Income in this band</th>
+                  <th scope="col">Rate</th>
+                  <th scope="col">Tax</th>
+                </tr>
+              </thead>
+              <tbody>
+                {results.brackets.map((bracket) => (
+                  <tr key={bracket.label}>
+                    <td>{bracket.label}</td>
+                    <td className="num whitespace-nowrap">{formatNaira(bracket.amount)}</td>
+                    <td className="num">{(bracket.rate * 100).toFixed(0)}%</td>
+                    <td className="num whitespace-nowrap">{formatNaira(bracket.tax)}</td>
+                  </tr>
+                ))}
+                <tr>
+                  <td className="font-extrabold" colSpan={3}>
+                    Tax for the year
                   </td>
-                  <td className="num py-2 pr-3 text-right">{(bracket.rate * 100).toFixed(0)}%</td>
-                  <td className="num whitespace-nowrap py-2 text-right">
-                    {formatNaira(bracket.tax)}
+                  <td className="num whitespace-nowrap font-extrabold">
+                    {formatNaira(results.taxDue)}
                   </td>
                 </tr>
-              ))}
-              <tr>
-                <td className="py-2 pr-3 font-semibold" colSpan={3}>
-                  Tax for the year
-                </td>
-                <td className="num whitespace-nowrap py-2 text-right font-semibold">
-                  {formatNaira(results.taxDue)}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      )}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </section>
   );
 }

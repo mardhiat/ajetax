@@ -66,30 +66,40 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen pb-24 lg:pb-10">
-      <header className="border-b border-gray-300 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-4">
-          <h1 className="text-2xl font-semibold">AJETAX</h1>
-          <p className="text-sm text-gray-700">Work out your 2026 personal income tax</p>
+      <a className="skip-link" href="#tax-result">
+        Skip to your tax figure
+      </a>
+      <header style={{ background: '#083d26', color: '#fff' }}>
+        <div className="flag-bar" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="mx-auto max-w-5xl px-4 py-5">
+          <h1 className="text-3xl font-extrabold tracking-tight">AJETAX</h1>
+          <p className="mt-1 text-base" style={{ color: '#f0c84b' }}>
+            Work out your 2026 personal income tax
+          </p>
         </div>
       </header>
 
       <main className="mx-auto max-w-5xl px-4 py-6">
-        <p className="max-w-2xl text-sm text-gray-700">
+        <p className="max-w-2xl text-base">
           Enter what you earned this year, what you are allowed to deduct, and any tax already
           taken. The figure updates as you type. This is an estimate, not a filing.
         </p>
-        <div className="mt-3 flex gap-2">
+        <div className="mt-4 flex flex-wrap gap-3">
           <button
             type="button"
             onClick={() => setFormData(EXAMPLE_FORM_DATA)}
-            className="rounded border border-green-900 bg-green-900 px-3 py-2 text-sm text-white"
+            className="btn btn-primary"
           >
             Fill with a sample
           </button>
           <button
             type="button"
             onClick={() => setFormData(INITIAL_FORM_DATA)}
-            className="rounded border border-gray-400 bg-white px-3 py-2 text-sm"
+            className="btn btn-quiet"
           >
             Clear
           </button>
@@ -97,7 +107,7 @@ const App: React.FC = () => {
 
         <div className="mt-6 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
           <div>
-            <Section title="Work">
+            <Section title="Work" tone="work">
               <CurrencyInput
                 label="Basic salary for the year"
                 name="basicSalary"
@@ -156,7 +166,7 @@ const App: React.FC = () => {
               />
             </Section>
 
-            <Section title="Other income">
+            <Section title="Other income" tone="income">
               <CurrencyInput
                 label="Profit from business"
                 name="netTradingIncome"
@@ -207,7 +217,7 @@ const App: React.FC = () => {
               />
             </Section>
 
-            <Section title="What you can deduct">
+            <Section title="What you can deduct" tone="deduct">
               <CurrencyInput
                 label="Rent you paid"
                 name="rentPaid"
@@ -249,7 +259,7 @@ const App: React.FC = () => {
               />
             </Section>
 
-            <Section title="Tax already taken">
+            <Section title="Tax already taken" tone="paid">
               <CurrencyInput
                 label="PAYE taken by your employer"
                 name="payeWithheld"
@@ -289,30 +299,35 @@ const App: React.FC = () => {
             </Section>
           </div>
 
-          <aside className="lg:sticky lg:top-4">
+          <aside id="tax-result" className="lg:sticky lg:top-4">
             <ResultsSection results={results} />
           </aside>
         </div>
         <BracketTable results={results} />
       </main>
 
-      <div className="fixed inset-x-0 bottom-0 border-t border-gray-300 bg-white px-4 py-3 lg:hidden">
+      <div className="mobile-bar fixed inset-x-0 bottom-0 px-4 py-3 lg:hidden">
         <div className="mx-auto flex max-w-5xl items-baseline justify-between gap-4">
-          <p className="text-sm">{barLabel}</p>
-          <p className="num text-xl font-semibold">{amountLeft}</p>
+          <p className="font-bold">{barLabel}</p>
+          <p className="num text-xl font-extrabold">{amountLeft}</p>
         </div>
       </div>
 
-      <footer className="border-t border-gray-300 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-6 text-sm text-gray-700">
+      <footer style={{ background: '#083d26', color: '#fff' }}>
+        <div className="mx-auto max-w-5xl px-4 py-6 text-base">
           <p>Produced by Maruf A. Ajetunmobi, MSc, AMNIM, FCTI</p>
           <p className="mt-2">
-            <a className="underline" href="mailto:marmutmufmur@gmail.com">
+            <a
+              className="font-bold underline"
+              style={{ color: '#f0c84b' }}
+              href="mailto:marmutmufmur@gmail.com"
+            >
               marmutmufmur@gmail.com
             </a>
             {' · '}
             <a
-              className="underline"
+              className="font-bold underline"
+              style={{ color: '#f0c84b' }}
               href="https://wa.me/18623715007"
               target="_blank"
               rel="noopener noreferrer"
@@ -320,7 +335,11 @@ const App: React.FC = () => {
               WhatsApp +1 (862) 371-5007
             </a>
             {' · '}
-            <a className="underline" href="tel:+2349138047181">
+            <a
+              className="font-bold underline"
+              style={{ color: '#f0c84b' }}
+              href="tel:+2349138047181"
+            >
               +234 913 804 7181
             </a>
           </p>
@@ -335,11 +354,19 @@ const App: React.FC = () => {
   );
 };
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  tone,
+  children,
+}: {
+  title: string;
+  tone: 'work' | 'income' | 'deduct' | 'paid';
+  children: React.ReactNode;
+}) {
   return (
-    <section className="mb-8">
-      <h2 className="mb-3 border-b border-gray-300 pb-2 text-lg font-semibold">{title}</h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">{children}</div>
+    <section className={`section-card tone-${tone}`}>
+      <h2>{title}</h2>
+      <div className="fields">{children}</div>
     </section>
   );
 }

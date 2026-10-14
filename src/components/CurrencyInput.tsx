@@ -30,12 +30,12 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
 
   return (
     <div>
-      <label htmlFor={inputId} className="mb-1 block text-sm">
+      <label htmlFor={inputId} className="mb-1 block font-semibold">
         {label}
       </label>
       <div className="relative">
         <span
-          className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-600"
+          className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 font-bold"
           aria-hidden="true"
         >
           ₦
@@ -52,11 +52,11 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
           placeholder="0"
           autoComplete="off"
           aria-describedby={helperId}
-          className="num w-full rounded border border-gray-400 bg-white py-2.5 pl-8 pr-3 text-base focus:border-green-800 focus:outline-none"
+          className="money-field num"
         />
       </div>
       {helperText && (
-        <p id={helperId} className="mt-1 text-sm text-gray-600">
+        <p id={helperId} className="help">
           {helperText}
         </p>
       )}
